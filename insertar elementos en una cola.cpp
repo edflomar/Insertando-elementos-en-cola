@@ -10,11 +10,10 @@ struct Nodo{
 };
 //Insertar elementos a l cola 
 void inCola(Nodo *&,Nodo *&,int);
-void eliminarElementC(Nodo *&,Nodo*&,int&);
+void eliminarElementC(Nodo *&,Nodo *&,int &);
 bool c_vacia(Nodo *);
 
 int main(){
-	
 	Nodo *frente=NULL;
 	Nodo *fin=NULL;
 	
@@ -26,12 +25,40 @@ int main(){
 		inCola(frente,fin,dato);
 	}while(dato !=-1);
 	
-	//Eliminando elementos de la cola
+	Nodo *actual = frente;
+	Nodo *sgt = NULL;
+	int aux;
+	
+	//Ordenando los numeros 
+	while(actual->siguiente !=NULL){
+		sgt = actual->siguiente;
+		
+		while(sgt !=NULL){
+			if(sgt->dato<actual->dato)
+			{
+				aux=actual->dato;
+				actual->dato=sgt->dato;
+				sgt->dato=aux;
+			}
+			sgt=sgt->siguiente;
+		}
+		actual=actual->siguiente;
+		sgt=actual->siguiente;
+	}
+	
+	
+	
+	
+	
+	//Eliminando elementos de la cola imprime los elementos y vacia la pila
+	
 	cout<<"\nElementos ingresados: ";
 	while(frente !=NULL){
 		eliminarElementC(frente,fin,dato);
 		if(frente !=NULL){
 			cout<<dato<<" ";
+		}else{
+			cout<<" "<<dato<<endl;
 		}
 	}
 	
@@ -78,3 +105,12 @@ void eliminarElementC(Nodo *&frente, Nodo *&fin, int &n){
 	
 	delete aux;
 }
+
+
+
+
+
+
+
+
+
